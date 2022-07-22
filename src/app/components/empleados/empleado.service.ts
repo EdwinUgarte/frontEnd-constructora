@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 @Injectable()
 export class EmpleadoService {
 
-  private urlEndPoint: string = "http://localhost:8080/api/empleados";
+  private urlEndPoint: string = "https://secret-plains-60366.herokuapp.com/api/empleados";
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 

@@ -8,7 +8,7 @@ import { Proyecto } from './proyecto';
 })
 export class ProyectosService {
 
- private urlEndPoint: string = "http://localhost:8080/api/proyectos";
+ private urlEndPoint: string = "https://secret-plains-60366.herokuapp.com/api/proyectos";
  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient) { }
