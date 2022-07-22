@@ -16,7 +16,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchProyectPipe } from './pipes/search-proyect.pipe';
-
+import { HeroComponent } from './components/hero/hero.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,12 +27,34 @@ const routes: Routes = [
   { path: 'empleados/form/:id', component: FormComponent },
   { path: 'proyectos', component: ProyectosComponent },
   { path: 'proyectos/form', component: FormComponentProyecto },
-  { path: 'proyectos/form/:id', component: FormComponentProyecto},
+  { path: 'proyectos/form/:id', component: FormComponentProyecto },
+  { path: 'nosotros', component: NosotrosComponent },
 ];
 
 @NgModule({
-  declarations: [AppComponent, EmpleadosComponent, ProyectosComponent, FormComponentProyecto, FormComponent, SearchComponent, SearchPipe, HeaderComponent, InicioComponent, FooterComponent, SearchProyectPipe],
-  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule],
+  declarations: [
+    AppComponent,
+    EmpleadosComponent,
+    ProyectosComponent,
+    FormComponentProyecto,
+    FormComponent,
+    SearchComponent,
+    SearchPipe,
+    HeaderComponent,
+    InicioComponent,
+    FooterComponent,
+    SearchProyectPipe,
+    HeroComponent,
+    NosotrosComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   providers: [EmpleadoService],
   bootstrap: [AppComponent],
 })

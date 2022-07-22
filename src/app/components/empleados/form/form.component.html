@@ -1,30 +1,117 @@
-<div style="margin-top: 30px;">
+<div style="margin-top: 30px">
   <h4 class="mb-3">Empleado:</h4>
-  <form class="needs-validation">
+  <form class="needs-validation" #formEmpleado="ngForm">
     <div class="row g-3">
       <div class="col-sm-6">
         <label for="firstName" class="form-label">Nombre</label>
-        <input type="text" class="form-control" [(ngModel)]="empleado.nombre" name="nombre"/><!--Se tiene que agregar el FormsModule en el app.module-->
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="empleado.nombre"
+          name="nombre"
+          required
+          minlength="4"
+          #NombreError="ngModel"
+        />
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+          NombreError.invalid && (NombreError.dirty || NombreError.touched)
+          "
+        >
+          <div *ngIf="NombreError.errors.required">Nombre Requerido</div>
+          <div *ngIf="NombreError.errors.minlength">
+            El Nombre debe tener al menos 4 caracteres
+          </div>
+        </div>
       </div>
 
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Apellido</label>
-        <input type="text" class="form-control" [(ngModel)]="empleado.apellido" name="apellido"/>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="empleado.apellido"
+          name="apellido"
+          required
+          minlength="3"
+          #apellidoError="ngModel"
+        />
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+          apellidoError.invalid && (apellidoError.dirty || apellidoError.touched)
+          "
+        >
+          <div *ngIf="apellidoError.errors.required">Apellido Requerido</div>
+          <div *ngIf="apellidoError.errors.minlength">
+            El Apellido debe tener al menos 3 caracteres
+          </div>
+        </div>
       </div>
 
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Telefono:</label>
-        <input type="number" class="form-control" [(ngModel)]="empleado.telefono" name="telefono"/>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="empleado.telefono"
+          name="telefono"
+          required
+          #telefonoError="ngModel"
+        />
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+          telefonoError.invalid && (telefonoError.dirty || telefonoError.touched)
+          "
+        >
+          <div *ngIf="telefonoError.errors.required">Telefono Requerido</div>
+        </div>
       </div>
 
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Colonia</label>
-        <input type="text" class="form-control" [(ngModel)]="empleado.colonia" name="colonia" />
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="empleado.colonia"
+          name="colonia"
+          required
+          minlength="5"
+          #coloniaError="ngModel"
+        />
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+          coloniaError.invalid && (coloniaError.dirty || coloniaError.touched)
+          "
+        >
+          <div *ngIf="coloniaError.errors.required">Colonia Requerido</div>
+          <div *ngIf="coloniaError.errors.minlength">
+            La colonia debe tener al menos 5 digitos
+          </div>
+        </div>
       </div>
 
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Puesto</label>
-        <input type="text" class="form-control" [(ngModel)]="empleado.puesto" name="puesto"/>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="empleado.puesto"
+          name="puesto"
+          required
+          #puestoError="ngModel"
+        />
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+          puestoError.invalid && (puestoError.dirty || puestoError.touched)
+          "
+        >
+          <div *ngIf="puestoError.errors.required">Puesto Requerido</div>
+        </div>
       </div>
 
       <div class="col-12">
@@ -35,16 +122,36 @@
           placeholder="you@example.com"
           [(ngModel)]="empleado.email"
           name="email"
+          required
+          email
+          #emailError="ngModel"
         />
+        <div style="padding-top: 2px; color: red; height: 5px;" *ngIf="emailError.invalid && (emailError.dirty || emailError.touched)">
+          <div *ngIf="puestoError.errors.required">Email Requerido</div>
+          <div *ngIf="emailError.errors.email">
+           Email debe tener un formato valido
+          </div>
+        </div>
       </div>
-      
     </div>
 
-    <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" (click)="update()" *ngIf="empleado.id">
+    <button
+      class="w-100 btn btn-primary btn-lg mt-5"
+      type="submit"
+      (click)="update()"
+      *ngIf="empleado.id"
+      [disabled]="!formEmpleado.form.valid"
+    >
       Actualizar Cliente
     </button>
-    <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" (click)="create()" *ngIf="!empleado.id">
-        Agregar Cliente
-      </button>
+    <button
+      class="w-100 btn btn-primary btn-lg mt-5"
+      type="submit"
+      (click)="create()"
+      *ngIf="!empleado.id"
+      [disabled]="!formEmpleado.form.valid"
+    >
+      Agregar Cliente
+    </button>
   </form>
 </div>

@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div class="container" style="display: flex; justify-content: space-between; align-items: center; margin: 20px;">
+<div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
   <div style="display: flex; flex-wrap: wrap; flex-direction: row; width: 50%; align-items: center;">
  
   <div >
@@ -54,8 +54,8 @@
   </div>
 </div>
 
-<div style="display: flex; flex-wrap: wrap;">
-  <div><p style="font-size: 20px;">Buscar por Nombre:</p></div>
+<div style="display: flex; flex-wrap: wrap; flex-direction: column;">
+  <div><p style="font-size: 15px;">Buscar por Nombre:</p></div>
   <app-search (search)="handleSearch($event)"></app-search>
 </div>
 </div>

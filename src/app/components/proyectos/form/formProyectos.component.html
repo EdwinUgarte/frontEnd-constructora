@@ -1,50 +1,167 @@
-<div style="margin-top: 30px;">
+<div style="margin-top: 30px">
   <h4 class="mb-3">Proyecto:</h4>
-  <form class="needs-validation">
+  <form class="needs-validation" #proyectoForm="ngForm">
     <div class="row g-3">
       <div class="col-sm-6">
         <label for="firstName" class="form-label">Titulo</label>
-        <input type="text" class="form-control" name="titulo" [(ngModel)]="proyecto.titulo"/><!--Se tiene que agregar el FormsModule en el app.module-->
+        <input
+          type="text"
+          class="form-control"
+          name="titulo"
+          [(ngModel)]="proyecto.titulo"
+          required
+          minlength="4"
+          #tituloError="ngModel"
+        /><!--Se tiene que agregar el FormsModule en el app.module-->
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+            tituloError.invalid && (tituloError.dirty || tituloError.touched)
+          "
+        >
+          <div *ngIf="tituloError.errors.required">Titulo Requerido</div>
+          <div *ngIf="tituloError.errors.minlength">
+            El titulo debe tener al menos 4 caracteres
+          </div>
+        </div>
       </div>
 
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Nombre Cliente</label>
-        <input type="text" class="form-control"  name="cliente" [(ngModel)]="proyecto.cliente"/>
+        <input
+          type="text"
+          class="form-control"
+          name="cliente"
+          [(ngModel)]="proyecto.cliente"
+          required
+          minlength="4"
+          #nombreError="ngModel"
+        />
+        <div style="padding-top: 2px; color: red; height: 5px;" *ngIf="nombreError.invalid && (nombreError.dirty || nombreError.touched)">
+          <div *ngIf="nombreError.errors.required">
+            Nombre Requerido
+          </div>
+          <div *ngIf="nombreError.errors.minlength">
+            El nombre debe tener al menos 4 caracteres
+          </div>
+        </div>
       </div>
-      
+
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Fecha de Inicio</label>
-        <input type="date" class="form-control"  name="fechaInicio" [(ngModel)]="proyecto.fechaInicio"/>
+        <input
+          type="date"
+          class="form-control"
+          name="fechaInicio"
+          [(ngModel)]="proyecto.fechaInicio"
+          required
+          #fechaIError="ngModel"
+        />
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+            fechaIError.invalid && (fechaIError.dirty || fechaIError.touched)
+          "
+        >
+          <div *ngIf="fechaIError.errors.required">Fecha requerida</div>
+        </div>
       </div>
 
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Fecha de Finalización</label>
-        <input type="date" class="form-control"  name="fechaFin" [(ngModel)]="proyecto.fechaFin"/>
+        <input
+          type="date"
+          class="form-control"
+          name="fechaFin"
+          [(ngModel)]="proyecto.fechaFin"
+          required
+          #fechaFError="ngModel"
+        />
+        <div
+        style="padding-top: 2px; color: red; height: 5px"
+        *ngIf="
+        fechaFError.invalid && (fechaFError.dirty || fechaFError.touched)
+        "
+      >
+        <div *ngIf="fechaFError.errors.required">Fecha requerida</div>
+      </div>
       </div>
 
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Costo</label>
-        <input type="number" class="form-control"  name="Costo" [(ngModel)]="proyecto.costo"/>
+        <input
+          type="number"
+          class="form-control"
+          name="Costo"
+          [(ngModel)]="proyecto.costo"
+          required
+          #costoError="ngModel"
+        />
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+          costoError.invalid && (costoError.dirty || costoError.touched)
+          "
+        >
+          <div *ngIf="costoError.errors.required">Costo Requerido</div>
+        </div>
       </div>
-
 
       <div class="col-sm-6">
         <label for="lastName" class="form-label">Telefono</label>
-        <input type="number" class="form-control" name="telefono" [(ngModel)]="proyecto.telefono"/>
+        <input
+          type="number"
+          class="form-control"
+          name="telefono"
+          [(ngModel)]="proyecto.telefono"
+        />
       </div>
 
       <label for="floatingTextarea">Descripcion: </label>
       <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="descripcion" style="height: 200px" [(ngModel)]="proyecto.descripcion"></textarea>
+        <textarea
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea"
+          name="descripcion"
+          style="height: 200px"
+          [(ngModel)]="proyecto.descripcion"
+          required
+          minlength="10"
+          #descripcionError="ngModel"
+        ></textarea>
+        <div
+          style="padding-top: 2px; color: red; height: 5px"
+          *ngIf="
+          descripcionError.invalid && (descripcionError.dirty || descripcionError.touched)
+          "
+        >
+          <div *ngIf="descripcionError.errors.required">Descripcion Requerida</div>
+          <div *ngIf="descripcionError.errors.minlength">
+            La descripcion debe tener al menos 10 caracteres
+          </div>
+        </div>
       </div>
-      
     </div>
 
-    <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" (click)="update()" *ngIf="proyecto.id">
+    <button
+      class="w-100 btn btn-primary btn-lg mt-5"
+      type="submit"
+      (click)="update()"
+      *ngIf="proyecto.id"
+      [disabled]="!proyectoForm.form.valid"
+      
+    >
       Actualizar Cliente
     </button>
-    <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" (click)="create()" *ngIf="!proyecto.id">
-        Agregar Cliente
-      </button>
+    <button
+      class="w-100 btn btn-primary btn-lg mt-5"
+      type="submit"
+      (click)="create()"
+      *ngIf="!proyecto.id"
+      [disabled]="!proyectoForm.form.valid"
+    >
+      Agregar Cliente
+    </button>
   </form>
 </div>
