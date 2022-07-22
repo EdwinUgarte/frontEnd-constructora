@@ -1,0 +1,50 @@
+<div style="margin-top: 30px;">
+  <h4 class="mb-3">Empleado:</h4>
+  <form class="needs-validation">
+    <div class="row g-3">
+      <div class="col-sm-6">
+        <label for="firstName" class="form-label">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="empleado.nombre" name="nombre"/><!--Se tiene que agregar el FormsModule en el app.module-->
+      </div>
+
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Apellido</label>
+        <input type="text" class="form-control" [(ngModel)]="empleado.apellido" name="apellido"/>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Telefono:</label>
+        <input type="number" class="form-control" [(ngModel)]="empleado.telefono" name="telefono"/>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Colonia</label>
+        <input type="text" class="form-control" [(ngModel)]="empleado.colonia" name="colonia" />
+      </div>
+
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Puesto</label>
+        <input type="text" class="form-control" [(ngModel)]="empleado.puesto" name="puesto"/>
+      </div>
+
+      <div class="col-12">
+        <label for="email" class="form-label">Email </label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="you@example.com"
+          [(ngModel)]="empleado.email"
+          name="email"
+        />
+      </div>
+      
+    </div>
+
+    <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" (click)="update()" *ngIf="empleado.id">
+      Actualizar Cliente
+    </button>
+    <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" (click)="create()" *ngIf="!empleado.id">
+        Agregar Cliente
+      </button>
+  </form>
+</div>

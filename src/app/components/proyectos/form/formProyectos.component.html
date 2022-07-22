@@ -1,0 +1,50 @@
+<div style="margin-top: 30px;">
+  <h4 class="mb-3">Proyecto:</h4>
+  <form class="needs-validation">
+    <div class="row g-3">
+      <div class="col-sm-6">
+        <label for="firstName" class="form-label">Titulo</label>
+        <input type="text" class="form-control" name="titulo" [(ngModel)]="proyecto.titulo"/><!--Se tiene que agregar el FormsModule en el app.module-->
+      </div>
+
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Nombre Cliente</label>
+        <input type="text" class="form-control"  name="cliente" [(ngModel)]="proyecto.cliente"/>
+      </div>
+      
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Fecha de Inicio</label>
+        <input type="date" class="form-control"  name="fechaInicio" [(ngModel)]="proyecto.fechaInicio"/>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Fecha de Finalización</label>
+        <input type="date" class="form-control"  name="fechaFin" [(ngModel)]="proyecto.fechaFin"/>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Costo</label>
+        <input type="number" class="form-control"  name="Costo" [(ngModel)]="proyecto.costo"/>
+      </div>
+
+
+      <div class="col-sm-6">
+        <label for="lastName" class="form-label">Telefono</label>
+        <input type="number" class="form-control" name="telefono" [(ngModel)]="proyecto.telefono"/>
+      </div>
+
+      <label for="floatingTextarea">Descripcion: </label>
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="descripcion" style="height: 200px" [(ngModel)]="proyecto.descripcion"></textarea>
+      </div>
+      
+    </div>
+
+    <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" (click)="update()" *ngIf="proyecto.id">
+      Actualizar Cliente
+    </button>
+    <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" (click)="create()" *ngIf="!proyecto.id">
+        Agregar Cliente
+      </button>
+  </form>
+</div>

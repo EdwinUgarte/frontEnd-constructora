@@ -1,0 +1,113 @@
+<style>
+  @media screen and (min-width: 700px) {
+    div.divCard {
+      width: 40%;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    div.divCard {
+      width: 100%;
+    }
+  }
+  div.divCard {
+    padding: 10px;
+    border: 2px solid rgb(9, 14, 90);
+    border-radius: 10px;
+    margin: 10px;
+    color: rgb(20, 20, 102);
+  }
+  p{
+    margin-bottom: 3px;
+  }
+</style>
+<div *ngIf="!listaEmpleados" style="height: 100vh">
+  <div class="card border-danger" style="padding: 10px; margin: 10px">
+    <div class="card-header">Error en la conexión de servicio</div>
+    <div class="card-body">
+      <h5 class="card-title">Realiza la conexión con el servidor</h5>
+      <p class="card-text">Ponte en contacto con el servicio tecnico</p>
+      <a routerLink="/home" class="btn btn-primary">ir a Inicio</a>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="display: flex; justify-content: space-between; align-items: center; margin: 20px;">
+  <div style="display: flex; flex-wrap: wrap; flex-direction: row; width: 50%; align-items: center;">
+ 
+  <div >
+    <button
+    type="button"
+    style="
+      background-color: rgb(0, 110, 255);
+      padding: 5px;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      width: 200px;
+      margin-top: 10px;
+      left: 0;
+    "
+      routerLink="/empleados/form"
+    >
+      Agregar Empleado
+    </button>
+  </div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap;">
+  <div><p style="font-size: 20px;">Buscar por Nombre:</p></div>
+  <app-search (search)="handleSearch($event)"></app-search>
+</div>
+</div>
+
+
+<div class="d-flex flex-wrap justify-content-center">
+  <div class="divCard" *ngFor="let empleado of listaEmpleados | search:filtro_valor">
+    <div style="display: flex; align-items: center;">
+    <img src="/assets/Images/usuario_icon.png" alt="icono" style="max-width: 40px; margin-right: 10px;" />
+    <div style="font-size: 18px">Empleado: {{ empleado.id }}</div>
+  </div>
+    <div class="card-body">
+      <h2 class="card-title" style="margin-bottom: 15px;">{{ empleado.nombre + " " + empleado.apellido }}</h2>
+      <p class="card-text">Telefono: {{ empleado.telefono }}</p>
+      <p class="card-text">Colonia: {{ empleado.colonia }}</p>
+      <p class="card-text">Email: {{ empleado.email }}</p>
+      <p class="card-text">Puesto: {{ empleado.puesto }}</p>
+      <div style="display: flex; justify-content: space-between; width: 100%">
+        <button
+          type="button"
+          [routerLink]="['/empleados/form', empleado.id]"
+          style="
+            background-color: rgb(0, 110, 255);
+            padding: 5px;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            width: 70px;
+            margin-top: 10px;
+          "
+
+        >
+          Editar
+        </button>
+        <button
+        type="button"
+        style="
+          background-color: rgb(247, 15, 45);
+          padding: 5px;
+          color: white;
+          border-radius: 5px;
+          border: none;
+          width: 70px;
+          margin-top: 10px;
+        "
+        (click)="delete(empleado)"
+
+      >
+        Eliminar
+      </button>
+      
+      </div>
+    </div>
+  </div>
+</div>
