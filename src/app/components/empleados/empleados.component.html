@@ -16,7 +16,7 @@
     margin: 10px;
     color: rgb(20, 20, 102);
   }
-  p{
+  p {
     margin-bottom: 3px;
   }
 </style>
@@ -31,44 +31,67 @@
   </div>
 </div>
 
-<div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-  <div style="display: flex; flex-wrap: wrap; flex-direction: row; width: 50%; align-items: center;">
- 
-  <div >
-    <button
-    type="button"
+<div
+  class="container"
+  style="
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  "
+>
+  <div
     style="
-      background-color: rgb(0, 110, 255);
-      padding: 5px;
-      color: white;
-      border-radius: 5px;
-      border: none;
-      width: 200px;
-      margin-top: 10px;
-      left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      width: 50%;
+      align-items: center;
     "
-      routerLink="/empleados/form"
-    >
-      Agregar Empleado
-    </button>
+  >
+    <div>
+      <button
+        type="button"
+        style="
+          background-color: rgb(0, 110, 255);
+          padding: 5px;
+          color: white;
+          border-radius: 5px;
+          border: none;
+          width: 200px;
+          margin-top: 10px;
+          left: 0;
+        "
+        routerLink="/empleados/form"
+      >
+        Agregar Empleado
+      </button>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; flex-direction: column">
+    <div><p style="font-size: 15px">Buscar por Nombre:</p></div>
+    <app-search (search)="handleSearch($event)"></app-search>
   </div>
 </div>
-
-<div style="display: flex; flex-wrap: wrap; flex-direction: column;">
-  <div><p style="font-size: 15px;">Buscar por Nombre:</p></div>
-  <app-search (search)="handleSearch($event)"></app-search>
-</div>
-</div>
-
 
 <div class="d-flex flex-wrap justify-content-center">
-  <div class="divCard" *ngFor="let empleado of listaEmpleados | search:filtro_valor">
-    <div style="display: flex; align-items: center;">
-    <img src="/assets/Images/usuario_icon.png" alt="icono" style="max-width: 40px; margin-right: 10px;" />
-    <div style="font-size: 18px">Empleado: {{ empleado.id }}</div>
-  </div>
+  <div
+    class="divCard"
+    *ngFor="let empleado of listaEmpleados | search: filtro_valor"
+  >
+    <div style="display: flex; align-items: center">
+      <img
+        src="/assets/Images/usuario_icon.png"
+        alt="icono"
+        style="max-width: 40px; margin-right: 10px"
+      />
+      <div style="font-size: 18px">Empleado: {{ empleado.id }}</div>
+    </div>
     <div class="card-body">
-      <h2 class="card-title" style="margin-bottom: 15px;">{{ empleado.nombre + " " + empleado.apellido }}</h2>
+      <h2 class="card-title" style="margin-bottom: 15px">
+        {{ empleado.nombre + " " + empleado.apellido }}
+      </h2>
       <p class="card-text">Telefono: {{ empleado.telefono }}</p>
       <p class="card-text">Colonia: {{ empleado.colonia }}</p>
       <p class="card-text">Email: {{ empleado.email }}</p>
@@ -86,27 +109,24 @@
             width: 70px;
             margin-top: 10px;
           "
-
         >
           Editar
         </button>
         <button
-        type="button"
-        style="
-          background-color: rgb(247, 15, 45);
-          padding: 5px;
-          color: white;
-          border-radius: 5px;
-          border: none;
-          width: 70px;
-          margin-top: 10px;
-        "
-        (click)="delete(empleado)"
-
-      >
-        Eliminar
-      </button>
-      
+          type="button"
+          style="
+            background-color: rgb(247, 15, 45);
+            padding: 5px;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            width: 70px;
+            margin-top: 10px;
+          "
+          (click)="delete(empleado)"
+        >
+          Eliminar
+        </button>
       </div>
     </div>
   </div>
