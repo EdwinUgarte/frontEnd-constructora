@@ -20,13 +20,35 @@
     margin-bottom: 3px;
   }
 </style>
+
 <div *ngIf="!listaEmpleados" style="height: 100vh">
   <div class="card border-danger" style="padding: 10px; margin: 10px">
-    <div class="card-header">Error en la conexión de servicio</div>
+    <div class="card-header">Cargando...</div>
     <div class="card-body">
-      <h5 class="card-title">Realiza la conexión con el servidor</h5>
-      <p class="card-text">Ponte en contacto con el servicio tecnico</p>
-      <a routerLink="/home" class="btn btn-primary">ir a Inicio</a>
+      <h4>Espera...</h4>
+      <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-info" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <h5 class="card-title">Si es necesario recarga la pagina</h5>
+      <p class="card-text">Si la falla persiste, ponte en contacto con el servicio tecnico</p>
     </div>
   </div>
 </div>
